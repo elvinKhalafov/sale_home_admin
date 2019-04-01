@@ -15,10 +15,9 @@ public class HomeController {
     private PostService postService;
 
     @RequestMapping("/")
-    public String index(Model model) {
-        List<Post> postList = postService.;
-        model.addAttribute("postList", postList);
-        System.out.println(postList);
-        return "view/active-topics;
+    public String index() {
+
+
+        return "view/active-topics";
     }
 }

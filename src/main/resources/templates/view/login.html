@@ -8,7 +8,8 @@
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <title>Dashio - Bootstrap Admin Template</title>
-  <c:import url="${pageContext.request.contextPath}/WEB-INF/fragment/imports.jsp"></c:import>
+  <th:block th:replace="fragment/imports :: imports"></th:block>
+
 </head>
 
 <body>
@@ -17,7 +18,7 @@
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-login" method="post" action="${pageContext.request.contextPath}/us?action=doLogin">
+      <form class="form-login" method="post" th:action="@{/login}">
         <h2 class="form-login-heading">sign in now</h2>
         <div class="login-wrap">
           <input type="email" name="email" class="form-control" placeholder="E-Mail" autofocus>
@@ -33,11 +34,11 @@
     </div>
   </div>
   <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
-  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery.backstretch.min.js"></script>
+  <script type="text/javascript" th:src="@{/lib/jquery.backstretch.min.js}"></script>
   <script>
-    $.backstretch("${pageContext.request.contextPath}/resources/img/login-bg.jpg", {
+    $.backstretch ("/img/login-bg.jpg"), {
       speed: 500
-    });
+    };
   </script>
 </body>
 

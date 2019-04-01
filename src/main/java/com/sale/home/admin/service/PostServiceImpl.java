@@ -1,8 +1,7 @@
 package com.sale.home.admin.service;
 
-import com.step.salehome.model.AdvancedSearchPost;
-import com.step.salehome.model.Post;
-import com.step.salehome.repository.PostRepository;
+import com.sale.home.admin.model.Post;
+import com.sale.home.admin.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,22 +20,25 @@ public class PostServiceImpl implements PostService {
 
 
     @Override
-    public List<Post> searchPost(AdvancedSearchPost advancedSearchPost) {
-        return postRepository.searchPost(advancedSearchPost);
+    public List<Post> getAllPosts(String status) {
+        return postRepository.getAllPosts(status);
     }
 
     @Override
-    public List<Post> getRecentlyPost() {
-        return postRepository.getRecentlyPost();
-    }
+    public void deletePost(int id) {
 
-    @Override
-    public void addPost(Post post) {
-        postRepository.addPost(post);
+         postRepository.deletePost(id);
     }
 
     @Override
     public Post getPostById(int id) {
         return postRepository.getPostById(id);
     }
+
+    @Override
+    public void activatePost(int id) {
+        postRepository.activatePost(id);
+    }
+
+
 }
