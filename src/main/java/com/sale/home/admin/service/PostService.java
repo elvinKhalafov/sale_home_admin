@@ -11,7 +11,7 @@ public interface PostService {
     List<Post> getAllPosts(String status);
     void deletePost(int id);
     Post getPostById(int id);
-    void activatePost(int id);
+    void updatePostStatus(int id, String status);
 
 
 }

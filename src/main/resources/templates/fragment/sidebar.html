@@ -11,8 +11,8 @@
                     <span>Topics</span>
                 </a>
                 <ul class="sub">
-                    <li><a th:href="@{/post/getAllActivePosts}">Active Posts</a></li>
-                    <li><a th:href="@{//post/getAllPendingPosts}">Pending Posts</a></li>
+                    <li style="cursor: pointer" id="IdActivePosts">Active Posts</li>
+                    <li style="cursor: pointer" id="IdPendingPosts">Pending Posts</li>
                 </ul>
             </li>
             <li class="sub-menu">
@@ -21,20 +21,14 @@
                     <span>Users</span>
                 </a>
                 <ul class="sub">
-                    <li><a th:href="@{//user/getAllActiveUsers}">Active Users</a></li>
-                    <li><a th:href="@{/user/getAllBlockedUsers}">Blocked Users</a></li>
+                    <li style="cursor: pointer" id="IdActiveUsers">Active Users</li>
+                    <li style="cursor: pointer" id="IdInactiveUsers">Inactive Users</li>
+                    <li style="cursor: pointer" id="IdBlockedUser">Blocked Users</li>
                 </ul>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/ns?action=inbox">
-                    <i class="fa fa-envelope"></i>
-                    <span>Mail </span>
-                    <span class="label label-theme pull-right mail-info">2</span>
-                </a>
             </li>
         </ul>
         <!-- sidebar menu end-->
     </div>
 </aside>
-    </th:block>
+</th:block>
 <!--sidebar end-->

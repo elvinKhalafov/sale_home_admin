@@ -10,10 +10,14 @@ import java.util.List;
 
 
 public interface UserService extends UserDetailsService {
-    List<User>getAllUsers(int status);
-    void blockUser(int id);
-    void activateUser(int id);
 
+    List<User>getAllUsersByStatus(int status);
+
+    User getUserDetail(int id);
+
+    void updateUserStatus(int id, int status);
+
+    void deleteUserById(int id);
 
     @Override
     UserDetails loadUserByUsername(String s) throws UsernameNotFoundException;

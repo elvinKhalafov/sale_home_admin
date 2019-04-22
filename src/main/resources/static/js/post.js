@@ -1,11 +1,10 @@
 
 
 function getAllActiveTopics() {
-    // postStatus = status;
 
     $.ajax({
         url: '/post/getAllActivePosts',
-        method: 'GET',
+        type: 'GET',
         dataType: 'json',
         success: function (posts) {
             $('#idTbody').empty();
@@ -22,10 +21,10 @@ function getAllActiveTopics() {
                     '<td>'+post.roomCount+'</td>\n' +
                     '<td>'+post.status+'</td>\n' +
                     '<td>'+post.city.cityName+'</td>\n' +
-                    '<td>'+post.user.firstname+'</td>\n' +
-                    '<td>'+post.user.lastname+'</td>\n' +
+                    '<td>'+post.user.firstName+'</td>\n' +
+                    '<td>'+post.user.lastName+'</td>\n' +
                     '<td>'+post.user.email+'</td>\n' +
-                    '<td><a onclick="deletePost('+post.id+' ,  '+post.status+')" style="text-align: center">\n' +
+                    '<td><a onclick="deletePost('+post.idPost+' ,  '+post.status+')" style="text-align: center">\n' +
                     '            <i class="fas fa-trash-alt" style="display: block"></i>\n' +
                     '        </a></td>\n' +
                     '</tr>');
@@ -35,11 +34,10 @@ function getAllActiveTopics() {
 }
 
 function getAllPendingTopics() {
-    topicStatus = status;
 
     $.ajax({
         url: '/post/getAllPendingPosts',
-        method: 'GET',
+        type: 'GET',
         dataType: 'json',
         success: function (topics) {
             $('#idTbody').empty();
@@ -56,8 +54,8 @@ function getAllPendingTopics() {
                     '<td>'+post.roomCount+'</td>\n' +
                     '<td>'+post.status+'</td>\n' +
                     '<td>'+post.city.cityName+'</td>\n' +
-                    '<td>'+post.user.firstname+'</td>\n' +
-                    '<td>'+post.user.lastname+'</td>\n' +
+                    '<td>'+post.user.firstName+'</td>\n' +
+                    '<td>'+post.user.lastName+'</td>\n' +
                     '<td>'+post.user.email+'</td>\n' +
                     '<td><a onclick="deletePost('+post.id+' ,  '+post.status+')" style="text-align: center">\n' +
                     '            <i class="fas fa-trash-alt" style="display: block"></i>\n' +
@@ -75,22 +73,22 @@ function deletePost(id, status) {
 
     $.ajax({
         url: '/post/deletePost/'+id,
-        method: 'POST',
+        type: 'post',
         success: function () {
             $('#dialog-see-more').dialog('close');
             if (status == 'active') {
-                getAllActiveTopics('active');
+                getAllActiveTopics();
             } else {
-                getAllPendingTopics('pending');
+                getAllPendingTopics();
             }
         }
     });
 }
 
-function activatePost() {
+function activatePost(id) {
     $.ajax({
         url: '/post/activatePostById/'+id,
-        method: 'POST',
+        type: 'post',
         success: function () {
             $('#dialog-see-more').dialog('close');
             getAllPendingTopics();

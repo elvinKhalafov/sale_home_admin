@@ -11,11 +11,66 @@
 
   <th:block th:replace="fragment/imports :: imports"></th:block>
 
-  <script type="text/javascript">
-      $(function () {
-          getAllActiveUsers();
-      });
+  <script>
+
+      var updateUrl;
+      $(document).ready(function() {
+          updateUrl = window.location.href+"post/getAllActivePosts";
+          dataTabelConfig(updateUrl);
+          $('#IdActivePosts').click(function () {
+//            $.ajax({
+//                url: "/post/getAllActivePosts",
+//                type: "get",
+//                beforeSend: function () {
+//                    $("#example").fadeOut(500);
+//                },
+//                success: function (data) {
+//
+//                }
+//            });
+
+              $('#example').dataTable().fnDestroy();
+              updateUrl = "/post/getAllActivePosts";
+              dataTabelConfig(updateUrl);
+          });
+
+          $("#IdPendingPosts").click(function () {
+              $('#example').dataTable().fnDestroy();
+              updateUrl = "/post/getAllPendingPosts";
+              dataTabelConfig(updateUrl);
+          });
+      } );
+
+
+
+      function dataTabelConfig(url) {
+          $('#example').DataTable({
+              reponsive: true,
+              "ajax": {
+                  "url": url,
+                  "dataSrc": ""
+              },
+              "columns": [
+                  {"data": "idPost"},
+                  {"data": "title"},
+                  {"data": "postType"},
+                  {"data": "price"},
+                  {"data": "area"},
+                  {"data": "city.cityName"},
+                  {"data": "user.firstName"},
+                  {"data": "user.lastName"},
+                  {"data": "user.email"},
+                  {"data": "idPost",
+                      "render": function (data, type, full, meta) {
+                          return '<button id="'+full.idPost+'" onclick="get_post_detail(this.id)" class="btn btn-cyan" style=\'text-align: center\'>' +
+                              'View details</button>';
+                      }
+                  }
+              ]
+          });
+      }
   </script>
+
 
 </head>
 

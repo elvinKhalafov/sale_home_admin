@@ -47,6 +47,51 @@ a, a:hover, a:focus {
     height: 100%;
 }
 
+#IdActivePosts {
+    padding:3px;
+    color: white;
+}
+#IdActivePosts:hover {
+    background-color: #4ECDC4;
+}
+
+#IdPendingPosts {
+    padding:3px;
+    color: white;
+}
+
+#IdPendingPosts:hover {
+    background-color: #4ECDC4;
+}
+
+
+#IdActiveUsers {
+    padding:3px;
+    color: white;
+}
+#IdActiveUsers:hover {
+    background-color: #4ECDC4;
+}
+
+#IdInactiveUsers {
+    padding:3px;
+    color: white;
+}
+
+#IdInactiveUsers:hover {
+    background-color: #4ECDC4;
+}
+
+
+#IdBlockedUser {
+    padding:3px;
+    color: white;
+}
+
+#IdBlockedUser:hover {
+    background-color: #4ECDC4;
+}
+
 /* Bootstrap Modifications */
 .modal-header {
 	background: #4ECDC4;

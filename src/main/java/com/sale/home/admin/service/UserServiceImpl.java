@@ -15,20 +15,24 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-
     @Override
-    public List<User> getAllUsers(int status) {
-        return userRepository.getAllUsers(status);
+    public List<User> getAllUsersByStatus(int status) {
+        return userRepository.getAllUsersByStatus(status);
     }
 
     @Override
-    public void blockUser(int id) {
-         userRepository.blockUser(id);
+    public User getUserDetail(int id) {
+        return userRepository.getUserDetail(id);
     }
 
     @Override
-    public void activateUser(int id) {
-         userRepository.activateUser(id);
+    public void updateUserStatus(int id, int status) {
+        userRepository.updateUserStatus(id, status);
+    }
+
+    @Override
+    public void deleteUserById(int id) {
+        userRepository.deleteUserById(id);
     }
 
     @Override

@@ -44,10 +44,13 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRoleType());
-        List<GrantedAuthority> list = new ArrayList<>();
-        list.add(grantedAuthority);
-        return list;
+        if (role != null){
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRoleType());
+            List<GrantedAuthority> list = new ArrayList<>();
+            list.add(grantedAuthority);
+            return list;
+        }
+        return null;
     }
 
     @Override

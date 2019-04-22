@@ -1,0 +1,64 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <form id="id-form-user">
+        <input type="hidden" id="idUser" name="id_user" hidden th:value="${user.idUser}">
+        <table id="user-detail">
+            <tr>
+                <td style="font-weight: bold" colspan="2">
+                    User information
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Id:
+                </td>
+                <td th:text="${user.idUser}">
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E-mail:
+                </td>
+                <td th:text="${user.email}">
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    First name:
+                </td>
+                <td th:text="${user.firstName}">
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Last name:
+                </td>
+                <td th:text="${user.lastName}">
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Role type:
+                </td>
+                <td>
+                    <input type="text" th:value="${user.role.roleType}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Status
+                </td>
+                <td>
+                    <input type="radio" name="status" value="1" th:attr="checked=${user.status == 1} ? 'true' : 'false' " > Active
+                    <br>
+                    <input type="radio" name="status" value="2" th:attr="checked=${user.status == 2} ? 'true' : 'false' " > Inactive
+                    <br>
+                    <input type="radio" name="status" value="3" th:attr="checked=${user.status == 3} ? 'true' : 'false' " > Blocked
+                </td>
+            </tr>
+        </table>
+    </form>
+</th:block>

@@ -6,13 +6,10 @@ import com.sale.home.admin.model.Post;
 import com.sale.home.admin.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Controller
@@ -22,33 +19,37 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @RequestMapping("/post/getAllActivePosts")
+    @RequestMapping(value = "/post/getAllActivePosts", produces = "application/json")
     @ResponseBody
     public List<Post> getAllActivePosts(){
-        List<Post>posts = postService.getAllPosts(PostConstants.POST_STATUS_ACTIVE);
-        return posts;
+        return postService.getAllPosts(PostConstants.POST_STATUS_ACTIVE);
     }
 
-    @RequestMapping("/post/deletePost/{id}")
-    public ResponseEntity deletePost(@PathParam("id") int id){
-
-        postService.deletePost(id);
-        return new ResponseEntity(HttpStatus.OK);
-    }
 
     @RequestMapping("/post/getAllPendingPosts")
     @ResponseBody
     public List<Post> getAllPendingPosts(){
-        List<Post>posts = postService.getAllPosts(PostConstants.POST_STATUS_INACTIVE);
+        List<Post> posts = postService.getAllPosts(PostConstants.POST_STATUS_INACTIVE);
         return posts;
     }
 
+    @RequestMapping("/post/post-detail/{id}")
+    public String getPostDeatil(@PathVariable("id") int id, Model model){
+        Post post = postService.getPostById(id);
+        model.addAttribute("post", post);
+        return "response/post-detail";
+    }
 
-    @RequestMapping("/post/activatePostById/{id}")
-    public ResponseEntity activatePost(@PathParam("id") int id){
-        postService.activatePost(id);
+    @RequestMapping("/post/delete-post/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePost(@PathVariable("id") int id, Model model){
+        postService.deletePost(id);
+    }
 
-        return new ResponseEntity(HttpStatus.OK);
+    @RequestMapping("/post/update-post/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void inactivatePost(@PathVariable("id") int id, @RequestParam("status") String status){
+        postService.updatePostStatus(id, status);
     }
 
 

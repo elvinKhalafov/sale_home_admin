@@ -36,8 +36,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void activatePost(int id) {
-        postRepository.activatePost(id);
+    public void updatePostStatus(int id, String status) {
+        postRepository.updatePostStatus(id, status);
     }
 
 

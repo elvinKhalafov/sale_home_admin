@@ -1,0 +1,138 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+<form id="id-form-post">
+    <input type="hidden" id="idPost" name="id_post" hidden th:value="${post.idPost}">
+    <table id="post-detail">
+        <tr>
+            <td style="font-weight: bold" colspan="2">
+                User information
+            </td>
+        </tr>
+        <tr>
+            <td>
+                E-mail:
+            </td>
+            <td th:text="${post.user.email}">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                First name:
+            </td>
+            <td th:text="${post.user.firstName}">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Last name:
+            </td>
+            <td th:text="${post.user.lastName}">
+
+            </td>
+        </tr>
+
+
+        <tr>
+            <td style="font-weight: bold" colspan="2">
+                Post information
+            </td>
+        </tr>
+
+
+
+        <tr>
+            <td>
+                Title:
+            </td>
+            <td th:text="${post.title}">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Post type
+            </td>
+            <td th:text="${post.postType}">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Home type
+            </td>
+            <td th:text="${post.homeType}">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                City
+            </td>
+            <td th:text="${post.city.cityName}">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Description
+            </td>
+            <td th:text="${post.desc}">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Price
+            </td>
+            <td th:text="${post.price}">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Area
+            </td>
+            <td th:text="${post.area}">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Rooms
+            </td>
+            <td th:text="${post.roomCount}">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Share date
+            </td>
+            <td th:text="${post.shareDate}">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Status
+            </td>
+            <td>
+                <input type="radio" name="status" value="active" th:attr="checked=${post.status == 'active'} ? 'true' : 'false' " > Active
+                <br>
+                <input type="radio" name="status" value="inactive" th:attr="checked=${post.status == 'inactive'} ? 'true' : 'false' " > Inactive
+            </td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold" colspan="2">
+                Images
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" >
+                <img th:each="photo : ${post.postImages}" th:src="@{'/uploads/'+${photo.imagePath}}" width="220" alt="">
+            </td>
+        </tr>
+    </table>
+</form>
+</th:block>

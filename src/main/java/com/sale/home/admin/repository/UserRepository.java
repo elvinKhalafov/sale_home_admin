@@ -8,10 +8,14 @@ import java.util.List;
 public interface UserRepository {
 
     User loginUser(String email);
-    List<User>getAllUsers(int status);
-    void blockUser(int id);
-    void activateUser(int id);
 
+    List<User> getAllUsersByStatus(int status);
+
+    User getUserDetail(int id);
+
+    void updateUserStatus(int id, int status);
+
+    void deleteUserById(int id);
 
 
 

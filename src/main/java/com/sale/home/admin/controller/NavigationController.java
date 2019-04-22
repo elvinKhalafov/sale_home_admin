@@ -1,5 +1,7 @@
 package com.sale.home.admin.controller;
 
+import com.sale.home.admin.model.User;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -8,27 +10,11 @@ public class NavigationController {
 
 
     @RequestMapping("/login")
-    public String openLoginPage() {
-
-        return "view/login";
-    }
-
-    @RequestMapping("/pending-topic")
-    public String openPendingTopicPage() {
-
-        return "view/pending-topic";
-    }
-
-    @RequestMapping("/active-users")
-    public String openActiveUsersPage() {
-
-        return "view/active-users";
-    }
-
-    @RequestMapping("/blocked-users")
-    public String openBlockedUsersPage() {
-
-        return "view/blocked-users";
+    public String openLoginPage(@AuthenticationPrincipal User user) {
+        if ( user == null)
+            return "view/login";
+        else
+            return "redirect:/";
     }
 
     @RequestMapping("/blank")
@@ -36,7 +22,6 @@ public class NavigationController {
 
         return "view/blank";
     }
-
 
 
 }
